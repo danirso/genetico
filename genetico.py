@@ -13,7 +13,7 @@ def gerar_pontos_circulo(n, raio=1):
 # Calcular a distância euclidiana entre dois pontos
 def distancia_euclidiana(ponto1, ponto2):
     return np.linalg.norm(ponto1 - ponto2)
-''
+
 # Avaliação da aptidão: soma das distâncias entre os pontos em uma rota
 def calcular_aptidao(caminho, pontos):
     distancia_total = 0
@@ -31,10 +31,10 @@ def inicializar_populacao(tamanho_populacao, n_pontos):
 def cruzamento(pai1, pai2):
     tamanho = len(pai1)
     inicio, fim = sorted(random.sample(range(tamanho), 2))
-    
+
     filho = [-1] * tamanho
     filho[inicio:fim] = pai1[inicio:fim]
-    
+
     pos = fim
     for gene in pai2:
         if gene not in filho:
@@ -68,13 +68,13 @@ def algoritmo_genetico(pontos, tamanho_populacao=100, geracoes=500, taxa_mutacao
 
     for geracao in range(geracoes):
         aptidoes = [calcular_aptidao(individuo, pontos) for individuo in populacao]
-        
+
         # Atualizar o melhor caminho
         menor_aptidao = min(aptidoes)
         if menor_aptidao < melhor_aptidao:
             melhor_aptidao = menor_aptidao
             melhor_caminho = populacao[aptidoes.index(menor_aptidao)]
-        
+
         # Mostrar desempenho a cada época
         historico_aptidao.append(melhor_aptidao)
         print(f"Geração {geracao+1}, Melhor aptidão: {melhor_aptidao}")
@@ -100,12 +100,12 @@ def plotar_caminho(pontos, caminho, titulo="Caminho"):
         p1 = pontos[caminho[i]]
         p2 = pontos[caminho[(i+1) % len(caminho)]]
         plt.plot([p1[0], p2[0]], [p1[1], p2[1]], 'bo-')
-    plt.scatter(pontos[:,0], pontos[:,1], c='red')
+    plt.scatter(pontos[:, 0], pontos[:, 1], c='red')
     plt.title(titulo)
     plt.show()
 
 # Exemplo de uso
-if __name__ == "_main_":
+if __name__ == "__main__":
     # Gerar pontos uniformes
     pontos_uniformes = gerar_pontos_uniforme(10)
     melhor_caminho, historico = algoritmo_genetico(pontos_uniformes)
