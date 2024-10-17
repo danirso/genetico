@@ -105,7 +105,7 @@ def plotar_caminho(pontos, caminho, titulo="Caminho"):
     plt.show()
 
 # Exemplo de uso
-if _name_ == "_main_":
+if __name__ == "_main_":
     # Gerar pontos uniformes
     pontos_uniformes = gerar_pontos_uniforme(10)
     melhor_caminho, historico = algoritmo_genetico(pontos_uniformes)
